@@ -3,6 +3,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.throttling import UserRateThrottle
 from .models import Employee, Attendance
 from .serializers import EmployeeSerializer, AttendanceSerializer
+from django.shortcuts import render
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
+
+def dashboard(request):
+    return render(request, 'employee_app/dashboard.html')
 
 class EmployeeListCreateView(generics.ListCreateAPIView):
     queryset = Employee.objects.select_related('department').all()
